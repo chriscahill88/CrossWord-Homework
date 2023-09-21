@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS316 Assignment 1</title>
+    <link rel="stylesheet" href="CS316StyleSheet1.css">
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        thead th, tbody td, tfoot th {
+        background-color: #1bc01bad; /* This is a shade of green */
+        }
+
+        tbody th {
+            background-color: #1bc01bad;
+        }
+
+        th, td {
+            width: 30px; /* Set a fixed width for the cells */
+            height: 30px; /* Set the same height as width to make them squares */
+            text-align: center;
+            border: 1px solid black; /* Add border for visual separation */
+        }
+
+        input {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="http://cs.uky.edu/~soward/CS316/A1/validator.php" method="POST">
+        <table>
+            <thead>
+                <tr>
+                    <th>-</th> <!-- This cell is empty to align with the left border -->
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th>10</th>
+                    <th>11</th>
+                    <th>-</th> <!-- This cell is empty to align with the right border -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop for rows -->
+                <script>
+                    //Variables for cells that should be writeable
+                    let writableCells = ['A-3','A-5','A-6','A-7','A-8','A-11'
+                    ,'B-3','B-7','B-11',
+                    'C-3','C-7','C-8','C-9','C-10','C-11',
+                    'D-1','D-2','D-3','D-7','D-11',
+                    'E-3','E-4','E-5','E-6','E-7','E-8','E-9','E-11', 
+                    'F-7','F-9',
+                    'G-4','G-5','G-6','G-7','G-9',];
+
+                    for (let i = 0; i < 7; i++) {
+                        document.write('<tr>');
+
+                        let rowLabel = String.fromCharCode(65 + i);
+
+                        // Add the letter label for each row (except the last one for numbering)
+                        document.write('<th>' + rowLabel + '</th>');
+
+                        for (let j = 0; j < 11; j++) {
+                            let cellName = rowLabel + '-' + (j + 1);
+
+                            // Check if this cell is in the writableCells array
+                            let isWritable = writableCells.includes(cellName);
+
+                            if (i < 7) {
+                                if (isWritable) {
+                                    document.write('<td>');
+                                } else {
+                                    document.write('<td class="disabled">');
+                                }
+
+                                // Always create the input field but toggle the 'disabled' attribute
+                                document.write('<input type="text" name="' + cellName + '" ' + (isWritable ? '' : 'disabled') + '>');
+                            } else {
+                                document.write('<td></td>'); // Empty cell for numbering
+                            }
+
+                            document.write('</td>');
+                        }
+
+                        // Add an empty cell for numbering
+                        document.write('<th>' + rowLabel + '</th>'); // Added this line for labels A-G
+
+                        document.write('</tr>');
+                    }
+                </script>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>-</th> <!-- This cell is empty to align with the left border -->
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th>10</th>
+                    <th>11</th>
+                    <th>-</th> <!-- This cell is empty to align with the right border -->
+                </tr>
+            </tfoot>
+        </table>
+        <input type="submit" value="Check Your Answers!">
+    </form>
+
+    <div id="clues">
+        <dl>
+            <dt><strong style="font-size: 1.2em;">Instructions</strong></dt>
+            <dd>Using the provided clues, fill in the blanks so that each white space contains a letter.</dd>
+            <dd>The 'Across' Clues go horizontally from left to right, starting at their grid point, while the Down clues go vertically from top to bottom.</dd>
+            <dd>Once completed, use the Check Your Answers button to see if your entries were correct</dd>
+            
+            <dt><strong style="font-size: 1.2em;">The Clues</strong></dt>
+            <div style="text-align: center;">
+                <strong style="font-size: 1.5em;">Across</strong>
+              </div>
+
+            <dt><strong style="font-size: 1.2em;">A-5</strong></dt>
+            <i>Collection of inputs to be sent to the HTTP Server</i>
+            <dt><strong style="font-size: 1.2em;">C-7</strong></dt>
+            <i>_String, how variables are received by the HTTP Server</i>
+            <dt><strong style="font-size: 1.2em;">D-1</strong></dt>
+            <i>Locates References --- Universally</i>
+            <dt><strong style="font-size: 1.2em;">E-3</strong></dt>
+            <i>Fundamental component of an HTML document</i>
+            <dt><strong style="font-size: 1.2em;">G-4</strong></dt>
+            <i>One method of sending data to the HTTP Server</i>
+            
+            <div style="text-align: center;">
+                <strong style="font-size: 1.5em;">Down</strong>
+            </div>
+
+            <dt><strong style="font-size: 1.2em;">A-3</strong></dt>
+            <i>Used to organize tabular data -- or to eat on</i>
+            <dt><strong style="font-size: 1.2em;">A-7</strong></dt>
+            <i>Ask you make of the HTTP server</i>
+            <dt><strong style="font-size: 1.2em;">A-11</strong></dt>
+            <i>Needed to change the Font or Color</i>
+            <dt><strong style="font-size: 1.2em;">E-9</strong></dt>
+            <i>These named items wrap an Element</i>
+        </dl>
+        <!-- Add more <dl> elements as needed -->
+    </div>
+    
+    
+</body>
+
+</html>
